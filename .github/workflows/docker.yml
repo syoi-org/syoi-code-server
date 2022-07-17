@@ -66,3 +66,4 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             code_server_version=${{ steps.code_server_ver.outputs.code_server_version }}
+          push: true
