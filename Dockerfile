@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
   cmake \
   openssh-server \
   supervisor \
+  rsync \
   && rm -rf /var/lib/apt/lists/*
 
 # install code-server
@@ -29,6 +30,9 @@ ADD supervisord.conf /etc/supervisor/supervisord.conf
 
 # configure sshd
 RUN mkdir -p /run/sshd
+
+# save user files in separate bootstrap folder
+RUN mv /home/${SERVER_USER} /home/.bootstrap
 
 # add entrypoint script
 ADD entrypoint.sh /
